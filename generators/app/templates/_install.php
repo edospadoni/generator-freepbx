@@ -21,8 +21,8 @@ if ($result === true) {
 }
 
 // Register FeatureCode
-$fcc = new featurecode('<%= name %>', '<%= name %>');
-$fcc->setDescription('<%= name.charAt(0).toUpperCase() + name.slice(1) %> welcome message');
-$fcc->setDefault('*43556');  // default is set to *-H-E-L-L-O
-$fcc->update();
-unset($fcc);
+// $fcc = new featurecode('<%= name %>', '<%= name %>');
+// $fcc->setDescription('<%= name.charAt(0).toUpperCase() + name.slice(1) %> welcome message');
+// $fcc->setDefault('*43556');
+// $fcc->update();
+// unset($fcc);

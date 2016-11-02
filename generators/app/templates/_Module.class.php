@@ -137,4 +137,39 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 		}
 		echo load_view(__DIR__.'/views/default.php', array('subhead' => $subhead, 'content' => $content));
 	}
+
+	/**
+	 * addItem Add an Item
+	 */
+	public function addItem($data){
+		// 	$sql = 'INSERT INTO helloworld (subject, body) VALUES (:subject, :body)';
+		// 	$stmt = $this->db->prepare($sql);
+		// 	$stmt->bindParam(':subject', $data['subject'], \PDO::PARAM_STR);
+		// 	$stmt->bindParam(':body', $data['body'], \PDO::PARAM_STR);
+		// 	$stmt->execute();
+		// 	return $this->db->lastInsertId();
+		return true;
+	}
+	/**
+	 * updateItem Updates the given ID
+	 */
+	public function updateItem($id,$data){
+		// $sql = 'UPDATE helloworld SET subject = :subject, body = :body WHERE id = :id';
+		// $stmt = $this->db->prepare($sql);
+		// $stmt->bindParam(':subject', $data['subject'], \PDO::PARAM_STR);
+		// $stmt->bindParam(':body', $data['body'], \PDO::PARAM_STR);
+		// $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+		// return $stmt->execute();
+		return true;
+	}
+	/**
+	 * deleteItem Deletes the given ID
+	 */
+	public function deleteItem($id){
+		// $sql = 'DELETE FROM helloworld WHERE id = :id';
+		// $stmt = $this->db->prepare($sql);
+		// $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+		// return $stmt->execute();
+		return true;
+	}
 }
