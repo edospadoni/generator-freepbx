@@ -139,6 +139,33 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 	}
 
 	/**
+	 * getOne Gets an individual item by ID
+	 */
+	public function getOne($id){
+		// $sql = "SELECT id,subject,body FROM helloworld WHERE id = :id";
+		// $stmt = $this->db->prepare($sql);
+		// $stmt->bindParam(':id',$id, \PDO::PARAM_INT);
+		// $stmt->execute();
+		// $row =$stmt->fetchObject();
+		// return array(
+		// 	'id' => $row->id,
+		// 	'subject' => $row->subject,
+		// 	'body' => $row->body
+		// 	);
+		return array();
+	}
+	/**
+	 * getList gets a list od subjects and their respective id.
+	 */
+	public function getList(){
+		$ret = array();
+		// $sql = 'SELECT id,subject,body from helloworld';
+		// foreach ($this->db->query($sql) as $row) {
+		// 	$ret[] = array('id' => $row['id'],'subject' => $row['subject']);
+		// }
+		return $ret;
+	}
+	/**
 	 * addItem Add an Item
 	 */
 	public function addItem($data){
