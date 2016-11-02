@@ -1,0 +1,22 @@
+<module>
+  <rawname><%= name %></rawname>
+  <repo>unsupported</repo>
+  <name><%= description %></name>
+  <version>1.0.0</version>
+  <category><%= category %></category>
+  <Publisher><%= author %></Publisher>
+  <info></info>
+  <licence>GPL</licence>
+  <licenselink>http://www.gnu.org/licenses/gpl-2.0.txt</licenselink>
+  <menuitems>
+    <<%= name %>><%= description %></<%= name %>>
+</menuitems>
+<depends>
+  <version>14</version>
+</depends>
+<supported>14.0</supported>
+
+<description><%= long_description %></description>
+<changelog></changelog>
+
+</module>
