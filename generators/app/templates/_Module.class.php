@@ -2,7 +2,6 @@
 namespace FreePBX\modules;
 /*
  * Class stub for BMO Module class
- * In _Construct you may remove the database line if you don't use it
  * In getActionbar change "modulename" to the display value for the page
  * In getActionbar change extdisplay to align with whatever variable you use to decide if the page is in edit mode.
  *
@@ -12,26 +11,35 @@ namespace FreePBX\modules;
 
 class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 {
-    public function __construct($freepbx = null)
-    {
-        if ($freepbx == null) {
-            throw new Exception("Not given a FreePBX Object");
-        }
-        $this->FreePBX = $freepbx;
-        $this->db = $freepbx->Database;
-    }
+
+    // Note that the default Constructor comes from BMO/Self_Helper.
+    // You may override it here if you wish. By default every BMO
+    // object, when created, is handed the FreePBX Singleton object.
+
+    // Do not use these functions to reference a function that may not
+    // exist yet - for example, if you add 'testFunction', it may not
+    // be visibile in here, as the PREVIOUS Class may already be loaded.
+    //
+    // Use install.php or uninstall.php instead, which guarantee a new
+    // instance of this object.
     public function install()
     {
     }
     public function uninstall()
     {
     }
+
+    // The following two stubs are planned for implementation in FreePBX 15.
     public function backup()
     {
     }
     public function restore($backup)
     {
     }
+
+    // http://wiki.freepbx.org/display/FOP/BMO+Hooks#BMOHooks-HTTPHooks(ConfigPageInits)
+    //
+    // This handles any data passed to this module before the page is rendered.
     public function doConfigPageInit($page) {
 		$id = $_REQUEST['id']?$_REQUEST['id']:'';
 		$action = $_REQUEST['action']?$_REQUEST['action']:'';
@@ -51,7 +59,9 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 				unset($_REQUEST['id']);
 			break;
 		}
-	}
+    }
+
+    // http://wiki.freepbx.org/pages/viewpage.action?pageId=29753755
     public function getActionBar($request)
     {
         $buttons = array();
@@ -81,6 +91,8 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
         }
         return $buttons;
     }
+
+    // http://wiki.freepbx.org/display/FOP/BMO+Ajax+Calls
     public function ajaxRequest($req, &$setting)
     {
         switch ($req) {
@@ -92,6 +104,8 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
             break;
         }
     }
+
+    // This is also documented at http://wiki.freepbx.org/display/FOP/BMO+Ajax+Calls
     public function ajaxHandler()
     {
         switch ($_REQUEST['command']) {
@@ -114,12 +128,17 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
             break;
         }
     }
+
+    // http://wiki.freepbx.org/display/FOP/Adding+Floating+Right+Nav+to+Your+Module
     public function getRightNav($request)
     {
         $html = '<p>Custom HTML</p>';
         return $html;
     }
-    public function showPage(){
+
+    // http://wiki.freepbx.org/display/FOP/HTML+Output+from+BMO
+    public function showPage()
+    {
 		switch ($_REQUEST['view']) {
 			case 'form':
 				if(isset($_REQUEST['id']) && !empty($_REQUEST['id'])){
