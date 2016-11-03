@@ -159,64 +159,37 @@ class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 	}
 
 	/**
-	 * getOne Gets an individual item by ID
+	 * Below are examples of how to use FreePBX's kvstore.
+	 *
+	 * DB_Helper is available when you 'implements \BMO' in the Class Definition.
+	 * For more documentation, see http://wiki.freepbx.org/display/FOP/BMO+DB_Helper
 	 */
 	public function getOne($id){
-		// $sql = "SELECT id,subject,body FROM helloworld WHERE id = :id";
-		// $stmt = $this->db->prepare($sql);
-		// $stmt->bindParam(':id',$id, \PDO::PARAM_INT);
-		// $stmt->execute();
-		// $row =$stmt->fetchObject();
-		// return array(
-		// 	'id' => $row->id,
-		// 	'subject' => $row->subject,
-		// 	'body' => $row->body
-		// 	);
-		return array();
+		return $this->getConfig($id, "settingsgroup");
 	}
 	/**
 	 * getList gets a list od subjects and their respective id.
 	 */
 	public function getList(){
-		$ret = array();
-		// $sql = 'SELECT id,subject,body from helloworld';
-		// foreach ($this->db->query($sql) as $row) {
-		// 	$ret[] = array('id' => $row['id'],'subject' => $row['subject']);
-		// }
-		return $ret;
+		return $this->getAll("settingsgroup");
 	}
 	/**
 	 * addItem Add an Item
 	 */
 	public function addItem($data){
-		// 	$sql = 'INSERT INTO helloworld (subject, body) VALUES (:subject, :body)';
-		// 	$stmt = $this->db->prepare($sql);
-		// 	$stmt->bindParam(':subject', $data['subject'], \PDO::PARAM_STR);
-		// 	$stmt->bindParam(':body', $data['body'], \PDO::PARAM_STR);
-		// 	$stmt->execute();
-		// 	return $this->db->lastInsertId();
-		return true;
+		$this->setConfig($data['subject'], $data['body'], 'items');
 	}
 	/**
 	 * updateItem Updates the given ID
 	 */
 	public function updateItem($id,$data){
-		// $sql = 'UPDATE helloworld SET subject = :subject, body = :body WHERE id = :id';
-		// $stmt = $this->db->prepare($sql);
-		// $stmt->bindParam(':subject', $data['subject'], \PDO::PARAM_STR);
-		// $stmt->bindParam(':body', $data['body'], \PDO::PARAM_STR);
-		// $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-		// return $stmt->execute();
-		return true;
+		$this->addItem(array("subject" => $id, "data" => $data));
 	}
 	/**
 	 * deleteItem Deletes the given ID
 	 */
 	public function deleteItem($id){
-		// $sql = 'DELETE FROM helloworld WHERE id = :id';
-		// $stmt = $this->db->prepare($sql);
-		// $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-		// return $stmt->execute();
-		return true;
+		// Setting an item to (bool) 'false' deletes it from the kvstore.
+		$this->addItem(array("subject" => $id, "data" => false));
 	}
 }
