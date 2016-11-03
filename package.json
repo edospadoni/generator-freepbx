@@ -1,6 +1,6 @@
 {
   "name": "generator-freepbx",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "This is the yeoman generator for a generic FreePBX module",
   "homepage": "",
   "author": {
