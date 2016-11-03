@@ -8,8 +8,6 @@ namespace FreePBX\modules;
  *
  */
 
-$setting = array('authenticate' => true, 'allowremote' => false);
-
 class <%= name.charAt(0).toUpperCase() + name.slice(1) %> implements \BMO
 {
 
