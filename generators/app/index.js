@@ -49,6 +49,14 @@ module.exports = yeoman.Base.extend({
         name: 'Settings',
         value: 'Settings'
       }]
+    }, {
+      type: 'confirm',
+      name: 'agi',
+      message: 'Include Asterisk AGI'
+    }, {
+      type: 'confirm',
+      name: 'sounds',
+      message: 'Include Asterisk Sounds'
     }];
 
     return this.prompt(prompts).then(function(props) {
@@ -57,6 +65,8 @@ module.exports = yeoman.Base.extend({
       this.long_description = props.long_description;
       this.author = props.author;
       this.category = props.category;
+      this.agi = props.agi;
+      this.sounds = props.sounds;
     }.bind(this));
   },
 
@@ -66,6 +76,13 @@ module.exports = yeoman.Base.extend({
     mkdirp('assets/css');
     mkdirp('i18n');
     mkdirp('images');
+
+    if (this.agi) {
+      mkdirp('agi-bin');
+    }
+    if (this.sounds) {
+      mkdirp('sounds/en');
+    }
 
     this.copy('_assets/_js/_module.js', 'assets/js/' + this.name + '.js');
 
