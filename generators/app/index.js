@@ -81,7 +81,7 @@ module.exports = yeoman.Base.extend({
       mkdirp('agi-bin');
     }
     if (this.sounds) {
-      mkdirp('sounds/en');
+      mkdirp('sounds/en/' + this.name);
     }
 
     this.copy('_assets/_js/_module.js', 'assets/js/' + this.name + '.js');
